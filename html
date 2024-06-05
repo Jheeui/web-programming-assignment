@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Like the sea, like the wave.</title>
+
+        <style>
+            #container {
+                min-width: 100%;
+                scroll-snap-type: y mandatory;
+                flex-flow: column nowrap;
+                background-color: black;
+            }
+
+            header{
+                position:fixed;
+                top: 0;
+                left: 0;
+                z-index: 10;
+                width: 100%;
+                height: 70px;
+                line-height: 70px;
+            }
+            header li{
+                display:inline;
+            }
+            header li a{
+                position: relative;
+                top:0;
+                transition: top 0.3s ease;
+                text-decoration-line: none;
+            }
+            header li a:hover{
+                top: -5px;
+            }
+            .menu-bar{
+                list-style-type: none;
+            }
+            header .menu-text{
+                display: none;
+                position: absolute;
+                bottom: -30px;
+                left: -20px;
+                width: 70px;
+                height: 15px;
+                line-height: 15px;
+                font-size: 12px;
+                font-weight: 600;
+                border-radius: 6px;
+                padding: 5px 0;
+                text-align: center;
+                background: #FCD53F;
+                color: darkblue;
+            }
+            header a:hover .menu-text{
+                display: block;
+            }
+
+            #home{
+                background-image: url("homebackground.jpg");
+                background-size: cover;
+                background-attachment: fixed;
+                background-position: 0 -120px;
+                height: 100vh;
+                width: 100vw;
+                scroll-snap-align: center;
+            }
+
+            #home .setup-text{
+                position : absolute; 
+                top: 50%; 
+                left : 50%; 
+                transform: translate(-50%, -50%);
+                color : gold;
+                background-color: darkblue;
+                font-size: 1.5rem;
+                border-right: 3px solid gold;
+                animation: blink .8s infinite, typing 3s steps(28);
+                white-space: nowrap;
+                overflow: hidden;
+            }
+            @keyframes blink{
+                50%{
+                    border-color: transparent;
+                }
+            }
+            @keyframes typing{
+                from{
+                    width: 0;
+                }
+                to{
+                    width: 707px;
+                }
+            }
+
+            #aboutme{
+                /* background-image: url("aboutmebackground.jpg"); */
+                background-color: rgb(136, 175, 235);
+                background-size: cover;
+                background-attachment: fixed;
+                background-position: 0 -120px;
+                /* width: 100vw; */
+                scroll-snap-align: center;
+                position: relative;
+                text-align: center;
+            }
+            .about_me{
+                display:flex;
+                flex-direction: column;
+                align-items: center;
+                padding-top: 50px;
+                color:gold;
+                font-size: 1.5rem;
+                white-space: nowrap;
+            }
+
+            .introduction{
+                margin: 0 auto;
+                padding: 30px 20px;
+                border: 1px double white;
+                border-radius: 10px;
+                background: rgba(255, 255, 255, 0.1);
+                box-shadow: 0 0 10px rgb(255 255 255 / 63%);
+                width: 300px;
+                margin-bottom: 5%;
+
+                display: inline-block;
+            }
+            
+            .whoami {
+                padding: 15px 20px;
+                border-radius: 5px;
+                color: gold;
+                background-color: darkblue;
+                /* position: absolute; */
+                opacity: 0;
+                transition: all ease 0.5s;
+                display: none;
+            }
+
+            .wave-for-me:hover + .whoami {
+                opacity: 1;
+            }
+
+            .whoisme{
+                width:300px;
+                margin:0 auto;
+
+
+                border: 0.5px double white;
+                color: darkblue;
+                background-color: rgb(255, 255, 255, 0.3);
+                text-align: center;
+                /* position: relative; */
+
+                display: inline-block;
+
+                font-size: 15px;
+            }
+
+            .contect{
+                color:darkblue;
+            }
+
+            .history{
+                /* margin-top: 30px; */
+                margin: 0 auto;
+                padding: 30px 20px;
+                border: 1px double white;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgb(255 255 255 / 63%);
+
+                width: 50%;
+                border: 0.5px double white;
+                color: darkblue;
+                /* background-color: rgb(255, 255, 255, 0.3); */
+                text-align: center;
+                position: relative;
+                display: inline-block;
+
+                font-size: 15px;
+            }
+
+            .difficult_solution{
+                margin: 0 auto;
+                padding: 30px 20px;
+                border: 1px double white;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgb(255 255 255 / 63%);
+
+                width: 50%;
+                border: 0.5px double white;
+                color: darkblue;
+                text-align: center;
+                position: relative;
+                display: inline-block;
+                margin-bottom: 5%;
+
+                font-size: 15px;
+            }
+
+            #check-btn { display: none; }
+            #check-btn:checked ~ .solution { display: block; } 
+            .solution { display: none; }
+
+            #check-btn2 { display: none; }
+            #check-btn2:checked ~ .my_skill { display: block; } 
+            .my_skill { display: none; }
+
+            #tech{
+                background-color: rgb(109, 150, 211);
+                background-size: cover;
+                background-attachment: fixed;
+                /* background-position: 0 -120px; */
+                scroll-snap-align: center;
+                position: relative;
+                text-align: center;
+                padding-bottom: 1%;
+            
+            }
+            
+            .about_tech{
+                display:flex;
+                flex-direction: column;
+                align-items: center;
+                padding-top: 50px;
+                color:gold;
+                font-size: 1.5rem;
+                white-space: nowrap;
+            }
+
+            .whatisai{
+                margin: 0 auto;
+                padding: 30px 20px;
+                border: 1px double white;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgb(255 255 255 / 63%);
+
+                width: 50%;
+                border: 0.5px double white;
+                color: darkblue;
+                text-align: center;
+                position: relative;
+                margin-bottom: 5%;
+                font-size: 15px;
+            }
+
+            #check-btn3 { display: none; }
+            #check-btn3:checked ~ .data { display: block; } 
+            .data { display: none; }
+
+            #check-btn4 { display: none; }
+            #check-btn4:checked ~ .reason { display: block; } 
+            .reason { display: none; }
+
+            #future{
+                background-color: rgb(67, 112, 179);
+                background-size: cover;
+                background-attachment: fixed;
+                background-position: 0 -120px;
+                scroll-snap-align: center;
+            }
+            .about_future{
+                display:flex;
+                flex-direction: column;
+                align-items: center;
+                padding-top: 50px;
+                color:gold;
+                font-size: 1.5rem;
+                white-space: nowrap;
+            }
+            .root{
+                margin: 0 auto;
+                padding: 30px 20px;
+                border: 1px double white;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgb(255 255 255 / 63%);
+
+                width: 80%;
+                border: 0.5px double white;
+                color: darkblue;
+                text-align: center;
+                position: relative;
+                /* margin-bottom: 30%; */
+
+                font-size: 15px;
+            }
+
+            .future_1way{
+                margin: 0 auto;
+                padding: 30px 20px;
+                border: 1px double white;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgb(255 255 255 / 63%);
+
+                width: 30%;
+                border: 0.5px double white;
+                color: darkblue;
+                text-align: center;
+                position: relative;
+                display: inline-block;
+
+                font-size: 15px;
+            }
+            .future_2way{
+                margin: 0 auto;
+                padding: 30px 20px;
+                border: 1px double white;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgb(255 255 255 / 63%);
+
+                width: 30%;
+                border: 0.5px double white;
+                color: darkblue;
+                text-align: center;
+                position: relative;
+                display: inline-block;
+
+                font-size: 15px;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <nav>
+                <ul class="menu-bar">
+                    <li>
+                        <a href="#home">🌟<span class="menu-text">home</span></a>
+                    </li>
+                    <li>
+                        <a href="#aboutme">🌟<span class="menu-text">about me</span></a>
+                    </li>
+                    <li>
+                        <a href="#tech">🌟<span class="menu-text">technology</span></a>
+                    </li>
+                    <li>
+                        <a href="#future">🌟<span class="menu-text">future</span></a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="container">
+                <section id = "home">
+                    <div class="setup-text">𝙏𝙝𝙚 𝙨𝙚𝙖 𝙞𝙨 𝙖𝙣 𝙪𝙣𝙙𝙚𝙧𝙬𝙖𝙩𝙚𝙧 𝙢𝙪𝙨𝙚𝙪𝙢 𝙨𝙩𝙞𝙡𝙡 𝙖𝙬𝙖𝙞𝙩𝙞𝙣𝙜 𝙞𝙩𝙨 𝙫𝙞𝙨𝙞𝙩𝙤𝙧𝙨. 
+                    <br> </div>
+                    <audio class=au, src="wave.mp3" loop></audio>
+                </section>
+
+                <section id="aboutme">
+                    <div class="about_me">
+                        <p>𝘼𝙗𝙤𝙪𝙩 𝙈𝙚</p>
+                    </div>
+
+                    <div class="introduction">
+                         <div class="whoisme">
+                            <img src="profilepicture.jpg" width="200" height="250">
+                            <p>최지희 Choi Jihui<br></p>
+                            <p>Department of Software, Kongju National University</p>
+                            <p class="wave-for-me">
+                                <span style="color : gold; background-color: darkblue;">파도</span>같은 미래의 정보보안전문가<br>
+                            </p> 
+                        </div>
+
+                        <div class="whoami">
+                            <p>파도 波濤<br></p>
+                            <p>1. 명사 바다에 이는 물결.<br></p>
+                            <p>2. 명사 맹렬한 기세로 일어나는 어떤 사회적 운동이나 현상을 비유적으로 이르는 말.<br></p>
+                            <p>3. 명사 강렬한 심리적 충동이나 움직임을 비유적으로 이르는 말.<br><br></p>
+                            <p>파도처럼 끊임없이 몰아쳐, 종래에는 돌을 깎아 내리는 결과물을 낳는 정보보안 전문가가 될 것이다<br>
+                            사람들과 끊임없이 교류하며 쉼없이 몰아쳐지는, 한 자리에 안주하지 않는 사람이 될것이다.<br>
+                            궁극적으로는 해외에서 활동하는 정보보안전문가가 될 것이다.</p>
+                        </div>
+                        
+                        <div class="contect">
+                            <p>010-3886-8414<br> choijihee7@naver.com</p>
+                        </div>
+                    </div>
+
+                    <div class="history">
+                        <p>Information Security<br></p>
+                        <p>정보보안 전문가란?<br>정보 시스템의 보안 정책을 세우고, 시스템에 대한 접근 및 운영을 통제하며, 침입자가 발생했을 시에는 신속하게 발견, 대응하여 시스템을 보호하는 일을 한다.<br>
+                            허가받지 않은 사람이 정보시스템이나 컴퓨터에 불법 접근하여 정보를 탈취, 변조, 파괴하는 등의 공격 행위를 할 때, 이를 방어하거나 예방한다.<br><br></p>
+                        <p>정보보안전문가를 꿈꾸게 된 이유 </p>
+                            <p>2017년 랜섬웨어로 150여개국의 20만대 이상의 컴퓨터가 잠긴 사례가 있었다. <br>
+                                NHS는 구급차 일부를 다른 병원으로 옮겨야 할 정도로 많은 방면에서 문제가 발생하였다.<br>
+                            이를 위하여 화이트 해커, 정보보안전문가들이 백신과 예방방법을 개발해내 그들을 존경하게되었고, 나도 그러한 정보보안전문가가 되고자 결심하였다.
+                        </p>
+                    </div>
+
+                    <div class="difficult_solution">
+                        <input id="check-btn" type="checkbox" />
+                        <label for="check-btn">▼ 겪었던 어려움과 해결</label>
+                        <p class="solution">
+                            어려웠던 대부분의 과제들은 '코딩'의 영역으로 해당 언어에 대한 기초적인 지식이 있어야 실행이 가능했다.<br>
+                            1, 2학년 때 배웠던 것을 기반으로 진행되기 때문에, 만일 배울 당시 제대로 따라가지 못한 사람은 이후 수업 또한 제대로 따라가지 못하여 계속 뒤쳐지기만 하는 점이 힘들었다.<br>
+                            특히 컴퓨터 언어의 알고리즘을 제대로 이해하지 못한 상태로 22년도에 있던 자바 수업을 수강하였는데, 
+                            1학기 시절 기본적인 for문 또한 제대로 수행하지 못하여 한 학기를 모두 따라가지 못하였다.<br> 
+                            이를 해결하기 위하여 22년도 여름방학동안 2학기에 있을 java 실습 수업을 위하여 c언어와 java를 활용하여 알고리즘을 공부하였다.<br>
+                            또 추가적으로 어떤 상황에서 어떤 알고리즘이 통상적으로 사용되는지 알아보기 위하여 백준 사이트를 활용하여 학습하였다.
+                        </p>
+                        <br><br><br>
+
+                        <input id="check-btn2" type="checkbox" />
+                        <label for="check-btn2">▼ 나의 역량</label>
+                        <p class="my_skill">
+                            여러 시험을 보며 현재 같은 수업을 듣는 동기, 선 후배들과 열을 세운다면 본인은 최하위에 위치할 것이라고 예상한다.<br> 
+                            컴퓨터공학의 가장 기본은 코딩이나, 코딩이 특출나지도 않으며, 컴퓨터에 대한 기초지식조차 뛰어난 편은 아니라 급급하게 동기들을 뒤따라가기 때문이다.<br>
+                            그러나 뒤쳐진다는 것에서 멈추지 않고, 자신의 문제점을 파악하고 나아갈 것이다.
+                        </p>
+                    </div>
+                </section>
+
+                <section id="tech">
+                    <div class="about_tech">
+                        <p>𝘼𝙗𝙤𝙪𝙩 𝙏𝙚𝙘𝙝𝙣𝙤𝙡𝙤𝙜𝙮</p>
+                    </div>
+
+                    <div class="whatisai">
+                        <input id="check-btn3" type="checkbox" />
+                        <label for="check-btn3">▼ 빅데이터 수집과 관련된 인공지능</label>
+                        <p class="data">
+                            <a href="https://glaze.cs.uchicago.edu/index.html" height="5" width="10" target="_blank">
+                                <img src="glaze.png" width="70%" alt="사진을 클릭시 이동합니다."><br>
+                            <a>
+                            창작을 할 수 있는 인공지능(ai)가 등장하면서 필연적으로 인공지능의 데이터 학습을 막는 프로그램 또한 등장하였다.<br>
+                            시카고 대학교에서 개발한 글레이즈 2.0 프로그램이 대표적인 프로그램이다.<br>
+                        </p>
+                        <br><br><br>
+
+                        <input id="check-btn4" type="checkbox" />
+                        <label for="check-btn4">▼ 관심을 갖게 된 이유</label>
+                        <p class="reason">
+                            창작의 영역은 인공지능이 넘을 수 없다고 하였지만 아이러니하게도 가장 먼저 침범받은 인간의 영역은 창작의 영역이었다.<br>
+                            인공지능이 창작을 하는 알고리즘 또한 궁금하지만, 궁극적으로 궁금한 사실은 인공지능들이 학습하는 '빅데이터'에 관한 법률과 이를 위한 기술이 아직 없다는 것이다.<br>
+                            많은 예시를 통하여 ai또한 창작의 영역이라 불려왔던 그림을 그리거나, 음악을 만드는 등의 창작성이 있는 활동을 할 수 있다는 것을 판명하였지만, 그 아래에 깔려있는 학습된 데이터의 저작권 문제가 해결되지 않았다.<br>
+                            작가는 자신의 그림체를 무단으로 학습하여 악용하는 사람들로 인하여 경제적, 심리적 문제를 갖고있다. 문제가 되는 점은 이러한 점을 막는 법이 아직 개발되지 않았다. ai는 인간의 편리함을 위하여 존재하기에, 데이터를 수집함에 있어서도 인간에게 피해를 끼쳐서는 안된다.<br>
+                            이를 예방하기 위하여 인공지능이 그림을 인식 할 수 없는 프로그램들이 개발되고는 있으나, 그림을 그리는 작가들이 따로 시간을 할애하여 해야한 다는 점과 이를 피하는 기술 또한 등장하고 있어 기술뿐만 아니라 법률적인 시각도 필요하다.
+                        </p>
+                    </div>
+                </section>
+
+                <section id="future">
+                    <div class="about_future">
+                        <p>𝙁𝙪𝙩𝙪𝙧𝙚</p>
+                    </div>
+
+                    <div class="root">
+                        <div class="future_1way">
+                        <h2>대학원 진학</h2>
+                        <p>공주대학교에 계시는 '김황래 교수님'께 문의드려 정보보안의 기술 뿐만 아니라 정책적인 면 또한 공부하고싶다.<br>
+                            인간의 편의성을 위하여 점차 발전하는 기술에 발 맞추어, 더 많은 사람들을 지킬 수 있는 법의 울타리가 필요하기 때문이다. <br>
+                            
+                           </p>
+                    </div>
+
+                    <div class="future_2way">
+                        <h2>취직</h2>
+                        <p>
+                            구글 코리아 채용 기준으로 지식 뿐만 아니라 실무에서 경험할 수 있는 다양한 상황과 그에 따른 판단을 내릴 수 있는 사람을 선호하는 것으로 확인된다.<br>
+                            사이버 보안팀인 프로젝트 제로 팀에서 제시한 CISSP나 CISA, GIAC과 같은 정보 보안 인증 자격증들을 취득할 수 있도록 노력할 것이다.<br>
+                            3학년을 마치게 되었을 때 정보처리기사 자격증을 먼저 취득할 수 있도록 남은 2024년 동안 자격증 공부를 할 것이다.<br>
+                            졸업 후 바로 취직은 불가능 하기 때문에 다른 기업들을 통하여 경험을 쌓아, 최종적으로는 해외기업에 입사할 것이다.
+                           </p>
+                    </div>
+                    </div>
+                </section>
+
+                <section id="ect">
+                    <div class="about_ect">
+                        <p></p>
+                    </div>
+                    
+                    <div class="anything">
+                        <p>If you need to get in touch, please contact us below.<br>
+                            📞 010-3886-8414<br>
+                            ✉️choijihee7@naver.com <br>
+                            🔗  
+                         </p>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </body>
+</html>
