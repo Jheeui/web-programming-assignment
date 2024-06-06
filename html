@@ -4,7 +4,18 @@
         <meta charset="UTF-8">
         <title>Like the sea, like the wave.</title>
 
+       <script>
+        function load(URL){
+            window.open(URL, "myWin", "left=300, top=300, width=800,height=500");
+        }
+       </script>
+       
+
         <style>
+            html{
+                scroll-behavior: smooth;
+            }
+
             #container {
                 min-width: 100%;
                 scroll-snap-type: y mandatory;
@@ -55,6 +66,7 @@
             header a:hover .menu-text{
                 display: block;
             }
+            
 
             #home{
                 background-image: url("homebackground.jpg");
@@ -62,7 +74,7 @@
                 background-attachment: fixed;
                 background-position: 0 -120px;
                 height: 100vh;
-                width: 100vw;
+                /* width: 100vw; */
                 scroll-snap-align: center;
             }
 
@@ -123,6 +135,7 @@
                 box-shadow: 0 0 10px rgb(255 255 255 / 63%);
                 width: 300px;
                 margin-bottom: 5%;
+            
 
                 display: inline-block;
             }
@@ -132,33 +145,29 @@
                 border-radius: 5px;
                 color: gold;
                 background-color: darkblue;
-                /* position: absolute; */
-                opacity: 0;
+                position: absolute;
                 transition: all ease 0.5s;
                 display: none;
             }
 
-            .wave-for-me:hover + .whoami {
-                opacity: 1;
-            }
+            
 
             .whoisme{
                 width:300px;
                 margin:0 auto;
 
-
                 border: 0.5px double white;
                 color: darkblue;
                 background-color: rgb(255, 255, 255, 0.3);
                 text-align: center;
-                /* position: relative; */
 
                 display: inline-block;
 
                 font-size: 15px;
             }
-
-            .contect{
+            
+            .whoisme a{
+                text-decoration-line: none;
                 color:darkblue;
             }
 
@@ -319,10 +328,61 @@
                 font-size: 15px;
             }
 
+            #ect{
+                background-color: rgb(35, 74, 131);
+                background-size: cover;
+            }
+
+            .anything{
+                margin: 0 auto;
+                padding: 30px 20px;
+
+                width: 50%;
+                color: gold;
+                text-align: center;
+                position: relative;
+                font-size: 15px;
+            }
+
         </style>
+
+        
+
     </head>
 
     <body>
+        <div class="loading">
+            <script>
+                function datecheck(){
+                    var dt = new Date();
+
+                    var arrDayStr = ['일','월','화','수','목','금','토'];
+                    var str = (dt.getMonth()+1)+'월 '+dt.getDate()+'일 ('+arrDayStr[dt.getDay()]+')';
+                    alert("오늘은 "+str+"입니다. 홈페이지를 방문해주셔서 감사합니다.");
+                }
+
+
+                function check1(){
+                    var input = confirm("안내사항을 확인하셨나요?");
+                    if(input==true){
+                        alert("확인해주셔서 감사합니다.");
+                        datecheck();
+                    }
+                    else{
+                        alert("안내사항을 확인해주세요");
+                        location.href = location.href;
+                    }
+                }
+
+                
+                
+                const name = prompt("이름을 입력해주세요");
+                alert("안녕하십니까 "+name+" 님\n해당 페이지에 이미지나 색이 다른 문장을 클릭하시면 다양한 정보를 확인하실 수 있습니다.");
+                check1();
+
+            </script>
+        </div>
+
         <header>
             <nav>
                 <ul class="menu-bar">
@@ -347,7 +407,6 @@
                 <section id = "home">
                     <div class="setup-text">𝙏𝙝𝙚 𝙨𝙚𝙖 𝙞𝙨 𝙖𝙣 𝙪𝙣𝙙𝙚𝙧𝙬𝙖𝙩𝙚𝙧 𝙢𝙪𝙨𝙚𝙪𝙢 𝙨𝙩𝙞𝙡𝙡 𝙖𝙬𝙖𝙞𝙩𝙞𝙣𝙜 𝙞𝙩𝙨 𝙫𝙞𝙨𝙞𝙩𝙤𝙧𝙨. 
                     <br> </div>
-                    <audio class=au, src="wave.mp3" loop></audio>
                 </section>
 
                 <section id="aboutme">
@@ -360,25 +419,25 @@
                             <img src="profilepicture.jpg" width="200" height="250">
                             <p>최지희 Choi Jihui<br></p>
                             <p>Department of Software, Kongju National University</p>
-                            <p class="wave-for-me">
-                                <span style="color : gold; background-color: darkblue;">파도</span>같은 미래의 정보보안전문가<br>
-                            </p> 
-                        </div>
-
-                        <div class="whoami">
-                            <p>파도 波濤<br></p>
-                            <p>1. 명사 바다에 이는 물결.<br></p>
-                            <p>2. 명사 맹렬한 기세로 일어나는 어떤 사회적 운동이나 현상을 비유적으로 이르는 말.<br></p>
-                            <p>3. 명사 강렬한 심리적 충동이나 움직임을 비유적으로 이르는 말.<br><br></p>
-                            <p>파도처럼 끊임없이 몰아쳐, 종래에는 돌을 깎아 내리는 결과물을 낳는 정보보안 전문가가 될 것이다<br>
-                            사람들과 끊임없이 교류하며 쉼없이 몰아쳐지는, 한 자리에 안주하지 않는 사람이 될것이다.<br>
-                            궁극적으로는 해외에서 활동하는 정보보안전문가가 될 것이다.</p>
-                        </div>
-                        
-                        <div class="contect">
+                            <a href="javascript:void(0)"> <p onclick="alert('파도 波濤\n 1. 명사 바다에 이는 물결.\n 2. 명사 맹렬한 기세로 일어나는 어떤 사회적 운동이나 현상을 비유적으로 이르는 말.\n 3. 명사 강렬한 심리적 충동이나 움직임을 비유적으로 이르는 말.\n\n파도처럼 끊임없이 몰아쳐, 종래에는 돌을 깎아 내리는 결과물을 낳는 정보보안 전문가가 될 것이다\n사람들과 끊임없이 교류하며 쉼없이 몰아쳐지는, 한 자리에 안주하지 않는 사람이 될것이다.')"><span style="color : gold; background-color: darkblue;">파도</span>같은 미래의 정보보안전문가<br></p></a>
+                            
                             <p>010-3886-8414<br> choijihee7@naver.com</p>
+                            
+                            <div class="whoami">
+                                 <p>파도 波濤<br></p>
+                                 <p>1. 명사 바다에 이는 물결.<br></p>
+                                 <p>2. 명사 맹렬한 기세로 일어나는 어떤 사회적 운동이나 현상을 비유적으로 이르는 말.<br></p>
+                                 <p>3. 명사 강렬한 심리적 충동이나 움직임을 비유적으로 이르는 말.<br><br></p>
+                                 <p>파도처럼 끊임없이 몰아쳐, 종래에는 돌을 깎아 내리는 결과물을 낳는 정보보안 전문가가 될 것이다<br>
+                                    사람들과 끊임없이 교류하며 쉼없이 몰아쳐지는, 한 자리에 안주하지 않는 사람이 될것이다.<br>
+                                    궁극적으로는 해외에서 활동하는 정보보안전문가가 될 것이다.</p>
+                                </div>
                         </div>
+                      
+                        
                     </div>
+
+                    
 
                     <div class="history">
                         <p>Information Security<br></p>
@@ -389,6 +448,8 @@
                                 NHS는 구급차 일부를 다른 병원으로 옮겨야 할 정도로 많은 방면에서 문제가 발생하였다.<br>
                             이를 위하여 화이트 해커, 정보보안전문가들이 백신과 예방방법을 개발해내 그들을 존경하게되었고, 나도 그러한 정보보안전문가가 되고자 결심하였다.
                         </p>
+                        
+                        
                     </div>
 
                     <div class="difficult_solution">
@@ -470,18 +531,16 @@
                 </section>
 
                 <section id="ect">
-                    <div class="about_ect">
-                        <p></p>
-                    </div>
-                    
                     <div class="anything">
                         <p>If you need to get in touch, please contact us below.<br>
                             📞 010-3886-8414<br>
                             ✉️choijihee7@naver.com <br>
-                            🔗  <a href="https://github.com/Jheeui/web-programming-assignment">GitHub</a>
+                            🔗  <a href="javascript:load('https://github.com/Jheeui/web-programming-assignment')">GitHub</a>
                          </p>
                     </div>
+                
                 </section>
+
             </div>
         </main>
     </body>
